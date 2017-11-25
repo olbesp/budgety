@@ -1,0 +1,14 @@
+{
+  "name": "budgety",
+  "version": "1.0.0",
+  "description": "\"Budget app\"",
+  "main": "app.js",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "author": "Oleksii Bespalko",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.3.0"
+  }
+}

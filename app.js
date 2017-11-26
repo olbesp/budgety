@@ -36,14 +36,26 @@ var UIController = (function() {
 
 // GLOBAL APP CONTROLLER
 var controller = (function(budgetCtrl, UICtrl) {
-  // Import Domstrings selectors by public method
-  var DOM = UICtrl.getDOMstrings();
+
+  var setupEventListeners = function() {
+    // Import Domstrings selectors by public method
+    var DOM = UICtrl.getDOMstrings();
+    // Listens for add button events
+    document.querySelector(DOM.inputBtn).addEventListener("click", ctrlAddItem);
+    // Listens for 'Enter' key events
+    document.addEventListener("keypress", function(event) {
+      // Checks if key === 'Enter'
+      if (event.keyCode === 13 || event.which === 13) {
+        ctrlAddItem();
+      }
+    });
+  };
 
 
   var ctrlAddItem = function() {
     // 1. Get the field input data
     var input = UICtrl.getinput();
-    console.log(input);
+    
     // 2. Add the item to the budget CONTROLLER
 
     // 3. Add the item to the UI
@@ -53,15 +65,14 @@ var controller = (function(budgetCtrl, UICtrl) {
     // 5. Display the budget
   }
 
-  // Listens for add button events
-  document.querySelector(DOM.inputBtn).addEventListener("click", ctrlAddItem);
-  // Listens for 'Enter' key events
-  document.addEventListener("keypress", function(event) {
-    // Checks if key === 'Enter'
-    if (event.keyCode === 13 || event.which === 13) {
-
-      ctrlAddItem();
+  return {
+    init: function() {
+      console.log("App has started");
+      setupEventListeners();
     }
-  });
+  };
 
 })(budgetController, UIController);
+
+
+controller.init();
